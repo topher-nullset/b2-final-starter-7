@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe "merchant dashboard" do
   before :each do
     @merchant1 = Merchant.create!(name: "Hair Care")
+    @merchant2 = Merchant.create!(name: "FloorMart")
 
     @customer_1 = Customer.create!(first_name: "Joey", last_name: "Smith")
     @customer_2 = Customer.create!(first_name: "Cecilia", last_name: "Jones")
@@ -39,6 +40,10 @@ RSpec.describe "merchant dashboard" do
     @transaction5 = Transaction.create!(credit_card_number: 102938, result: 1, invoice_id: @invoice_6.id)
     @transaction6 = Transaction.create!(credit_card_number: 879799, result: 1, invoice_id: @invoice_7.id)
     @transaction7 = Transaction.create!(credit_card_number: 203942, result: 1, invoice_id: @invoice_2.id)
+
+    @discount1 = Discount.create!(merchant_id: @merchant1.id, threshold: 10, percentage: 10.00)
+    @discount2 = Discount.create!(merchant_id: @merchant1.id, threshold: 20, percentage: 15.00)
+    @discount3 = Discount.create!(merchant_id: @merchant2.id, threshold: 15, percentage: 15.00)
 
     visit merchant_dashboard_index_path(@merchant1)
   end
@@ -118,5 +123,18 @@ RSpec.describe "merchant dashboard" do
 
   it "shows the date that the invoice was created in this format: Monday, July 18, 2019" do
     expect(page).to have_content(@invoice_1.created_at.strftime("%A, %B %-d, %Y"))
+  end
+
+  # User Story 1
+  it "shows a link to view my discounts" do
+    expect(page).to have_link("Discounts")
+    
+    click_link("Discounts")
+    expect(current_path).to eq("/merchants/#{@merchant1.id}/discounts")
+    expect(page).to have_link("#{@discount1.id}")
+    expect(page).to have_content("Percentage Discount: %10.0 Quantity Threschold: 10 items.")
+    expect(page).to have_link("#{@discount2.id}")
+    expect(page).to have_content("Percentage Discount: %15.0 Quantity Threschold: 20 items.")
+    expect(page).to_not have_link("#{@discount3.id}")
   end
 end
