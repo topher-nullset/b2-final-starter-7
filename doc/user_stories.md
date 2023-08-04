@@ -10,6 +10,8 @@ Then I am taken to my bulk discounts index page
 Where I see all of my bulk discounts including their
 percentage discount and quantity thresholds
 And each bulk discount listed includes a link to its show page
+
+
 2: Merchant Bulk Discount Create
 
 As a merchant
@@ -20,6 +22,8 @@ Then I am taken to a new page where I see a form to add a new bulk discount
 When I fill in the form with valid data
 Then I am redirected back to the bulk discount index
 And I see my new bulk discount listed
+
+
 3: Merchant Bulk Discount Delete
 
 As a merchant
@@ -28,11 +32,15 @@ Then next to each bulk discount I see a link to delete it
 When I click this link
 Then I am redirected back to the bulk discounts index page
 And I no longer see the discount listed
+
+
 4: Merchant Bulk Discount Show
 
 As a merchant
 When I visit my bulk discount show page
 Then I see the bulk discount's quantity threshold and percentage discount
+
+
 5: Merchant Bulk Discount Edit
 
 As a merchant
@@ -44,23 +52,31 @@ And I see that the discounts current attributes are pre-poluated in the form
 When I change any/all of the information and click submit
 Then I am redirected to the bulk discount's show page
 And I see that the discount's attributes have been updated
+
+
 6: Merchant Invoice Show Page: Total Revenue and Discounted Revenue
 
 As a merchant
 When I visit my merchant invoice show page
 Then I see the total revenue for my merchant from this invoice (not including discounts)
 And I see the total discounted revenue for my merchant from this invoice which includes bulk discounts in the calculation
+
+
 7: Merchant Invoice Show Page: Link to applied discounts
 
 As a merchant
 When I visit my merchant invoice show page
 Next to each invoice item I see a link to the show page for the bulk discount that was applied (if any)
+
+
 8: Admin Invoice Show Page: Total Revenue and Discounted Revenue
 
 As an admin
 When I visit an admin invoice show page
 Then I see the total revenue from this invoice (not including discounts)
 And I see the total discounted revenue from this invoice which includes bulk discounts in the calculation
+
+
 9: Holidays API
 
 As a merchant
