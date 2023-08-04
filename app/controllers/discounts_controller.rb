@@ -1,21 +1,30 @@
-class DiscountsController < ApplicationController
-  before_action :find_discount_and_merchant, only: [:show, :destroy]
-  before_action :find_merchant, only: [:new, :create, :index]
+  class DiscountsController < ApplicationController
+    before_action :find_discount_and_merchant, only: [:show, :destroy, :update, :edit]
+    before_action :find_merchant, only: [:new, :create, :index]
 
   def index
     @discounts = @merchant.discounts
   end
 
-  def new
-    
+  def show
   end
 
-  def create
-    float = params[:percentage].to_f
-    Discount.create!(percentage: float,
-      threshold: params[:threshold],
-      merchant: @merchant)
-      redirect_to merchant_discounts_path(@merchant)
+  def new
+  end
+  
+    def create
+      float = params[:percentage].to_f
+      Discount.create!(percentage: float,
+        threshold: params[:threshold],
+        merchant: @merchant)
+        redirect_to merchant_discounts_path(@merchant)
+    end
+
+  def edit
+  end
+
+  def update
+    
   end
 
   def destroy
