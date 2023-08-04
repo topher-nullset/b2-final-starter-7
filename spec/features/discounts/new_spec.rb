@@ -48,6 +48,7 @@ RSpec.describe "merchant discount new" do
     visit new_merchant_discount_path(@merchant1)
   end
 
+  #User Story 2
   it "renders new merchant discount form that works" do
     fill_in "threshold", with: "100"
     fill_in "percentage", with: "50"
