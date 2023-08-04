@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "merchant discount new" do
-  before :each do
+RSpec.describe "merchant discount edit page" do
+  before(:each) do
     @merchant1 = Merchant.create!(name: "Hair Care")
     @merchant2 = Merchant.create!(name: "FloorMart")
 
@@ -43,18 +43,22 @@ RSpec.describe "merchant discount new" do
 
     @discount1 = Discount.create!(merchant_id: @merchant1.id, threshold: 10, percentage: 10.00)
     @discount2 = Discount.create!(merchant_id: @merchant1.id, threshold: 20, percentage: 15.00)
-    @discount3 = Discount.create!(merchant_id: @merchant2.id, threshold: 15, percentage: 15.00)
+    @discount3 = Discount.create!(merchant_id: @merchant2.id, threshold: 15, percentage: 25.00)
   
-    visit new_merchant_discount_path(@merchant1)
+    visit edit_merchant_discount_path(@merchant1, @discount1)
   end
 
-  #User Story 2
-  it "renders new merchant discount form that works" do
-    fill_in "threshold", with: "100"
-    fill_in "percentage", with: "50"
+  it "renders the edit merchant discount form" do
+    expect(find_field("Percentage").value.to_i).to eq(@discount1.percentage.to_i)
+    expect(find_field("Threshold").value.to_i).to eq(@discount1.threshold)
+    expect(find_field("Percentage").value.to_i).to_not eq(@discount2.percentage.to_i)
+
+    fill_in "Percentage", with: 30
+    fill_in "Threshold", with: 30
     click_button "Submit Discount"
-    expect(current_path).to eq(merchant_discounts_path(@merchant1))
-    expect(page).to have_content("Discount: %50")
-    expect(page).to have_content("Min Quantity: 100 items")
+    save_and_open_page
+    expect(current_path).to eq(merchant_discount_path(@merchant1, @discount1))
+    expect(page).to have_content("Discount: %30")
+    expect(page).to have_content("Min Quantity: 30 items")
   end
 end

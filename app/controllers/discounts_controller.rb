@@ -24,7 +24,9 @@
   end
 
   def update
-    
+    @discount.update(discount_params)
+    flash.notice = 'Discount Has Been Updated!'
+    redirect_to merchant_discount_path(@merchant, @discount)
   end
 
   def destroy
