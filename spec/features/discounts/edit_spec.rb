@@ -48,6 +48,7 @@ RSpec.describe "merchant discount edit page" do
     visit edit_merchant_discount_path(@merchant1, @discount1)
   end
 
+  # User Story 5
   it "renders the edit merchant discount form" do
     expect(find_field("Percentage").value.to_i).to eq(@discount1.percentage.to_i)
     expect(find_field("Threshold").value.to_i).to eq(@discount1.threshold)
@@ -56,7 +57,7 @@ RSpec.describe "merchant discount edit page" do
     fill_in "Percentage", with: 30
     fill_in "Threshold", with: 30
     click_button "Submit Discount"
-    save_and_open_page
+
     expect(current_path).to eq(merchant_discount_path(@merchant1, @discount1))
     expect(page).to have_content("Discount: %30")
     expect(page).to have_content("Min Quantity: 30 items")
