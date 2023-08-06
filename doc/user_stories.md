@@ -69,12 +69,12 @@ When I visit my merchant invoice show page
 Next to each invoice item I see a link to the show page for the bulk discount that was applied (if any)
 
 
-   8: Admin Invoice Show Page: Total Revenue and Discounted Revenue
+8: Admin Invoice Show Page: Total Revenue and Discounted Revenue
 
-   As an admin
-   When I visit an admin invoice show page
-   Then I see the total revenue from this invoice (not including discounts)
-   And I see the total discounted revenue from this invoice which includes bulk discounts in the calculation
+As an admin
+When I visit an admin invoice show page
+Then I see the total revenue from this invoice (not including discounts)
+And I see the total discounted revenue from this invoice which includes bulk discounts in the calculation
 
 
 9: Holidays API
