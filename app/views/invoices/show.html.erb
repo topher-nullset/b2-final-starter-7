@@ -45,7 +45,7 @@
               <td style="text-align:center">
               <% discount = i.item.applicable_discount(i.quantity) %>
               <% if discount %>
-                <%= link_to "Discount ##{discount.id}", merchant_discount_path(discount) %>
+                <%= link_to "Discount ##{discount.id}", merchant_discount_path(discount.merchant_id, discount.id) %>
               <% end %>
             </td>
           </tr>
@@ -53,5 +53,4 @@
       <% end %>
     </tbody>
   </table>
-
 </body>
