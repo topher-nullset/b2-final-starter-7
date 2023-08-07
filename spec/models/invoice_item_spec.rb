@@ -50,10 +50,11 @@ RSpec.describe InvoiceItem, type: :model do
       @i1 = Invoice.create!(customer_id: @c1.id, status: 2)
       @ii_1 = InvoiceItem.create!(invoice_id: @i1.id, item_id: @item_1.id, quantity: 1, unit_price: 10, status: 0)
       @ii_2 = InvoiceItem.create!(invoice_id: @i1.id, item_id: @item_2.id, quantity: 5, unit_price: 8, status: 0)
+    end
+    
     it "discounted_price" do
       expect(@ii_1.discounted_price).to eq(10.0)
       expect(@ii_2.discounted_price).to eq(36.0)
-      end
     end
   end
 end
