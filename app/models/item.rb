@@ -21,6 +21,9 @@ class Item < ApplicationRecord
   end
 
   def applicable_discount(quantity)
-    merchant.discounts.where('threshold <= ?', quantity).order(threshold: :desc).first
+    merchant.discounts
+            .where('threshold <= ?', quantity)
+            .order(threshold: :desc)
+            .first
   end
 end
