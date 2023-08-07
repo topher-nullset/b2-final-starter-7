@@ -7,8 +7,6 @@ class InvoiceItem < ApplicationRecord
 
   belongs_to :invoice
   belongs_to :item
-  # has_one :merchant, through: :item
-  # has_many :discounts, through: :item
 
   enum status: [:pending, :packaged, :shipped]
 
@@ -20,8 +18,7 @@ class InvoiceItem < ApplicationRecord
   def discounted_price
     applicable_discount = item.applicable_discount(quantity)
     if applicable_discount
-      discounted_price = (quantity * unit_price * (1 - applicable_discount.percentage/100.00)).ceil(2)
-      discounted_price
+      (quantity * unit_price * (1 - applicable_discount.percentage/100.00)).ceil(2)
     else
       unit_price * quantity
     end
