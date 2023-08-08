@@ -7,6 +7,13 @@
 
   <p><%= link_to "Create New Discount", new_merchant_discount_path(@merchant) %></p>
 
+  <h2>Next 3 Holidays</h2>
+  <ul>
+    <% @holidays.each do |holiday| %>
+      <li><strong><%= holiday.name %></strong>: <%= holiday.date %></li>
+    <% end %>
+  </ul>
+
   <% @discounts.each do |discount| %>
     <p><%= link_to "Discount ##{discount.id}", merchant_discount_path(@merchant, discount) %></p>
     <p>Discount:   %<%= discount.percentage.to_i %></p>

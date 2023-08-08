@@ -48,11 +48,13 @@ RSpec.describe "merchant discount show" do
     visit merchant_discount_path(@merchant1, @discount1)
   end
 
+  # User Story 4
   it "renders the discount information" do
     expect(page).to have_content("Discount: %10")
     expect(page).to have_content("Min Quantity: 10 items")
   end
 
+  # User Story 5
   it "renders a link to edit discount" do
     expect(page).to have_link("Edit Discount")
   end

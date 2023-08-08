@@ -3,6 +3,7 @@
     before_action :find_merchant, only: [:new, :create, :index]
 
   def index
+    @holidays = NagerService.new.next_3_holidays
     @discounts = @merchant.discounts
   end
 

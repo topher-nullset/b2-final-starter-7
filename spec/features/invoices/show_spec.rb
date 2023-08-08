@@ -95,8 +95,13 @@ RSpec.describe "invoices show" do
     end
   end
 
+  # User Story 6
   it "shows the discounted revenue for this invoice" do
     expect(page).to have_content("Discounted Revenue: $151.2")
   end
 
+  #User Story 7
+  it "renders links to applied discounts" do
+    expect(page).to have_link("Discount #1")
+  end
 end
