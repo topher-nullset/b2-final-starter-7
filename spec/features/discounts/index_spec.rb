@@ -78,4 +78,12 @@ RSpec.describe "merchant discounts index" do
     expect(page).to_not have_content("Discount: %10")
     expect(page).to_not have_content("Min Quantity: 10")
   end
+
+  # User Story 9
+  it "shows the next 3 holidays and the dates" do
+    expect(page).to have_content("Next 3 Holidays")
+    expect(page).to have_content("Labour Day: 2023-09-04")
+    expect(page).to have_content("Columbus Day: 2023-10-09")
+    expect(page).to have_content("Veterans Day: 2023-11-10")
+  end
 end
