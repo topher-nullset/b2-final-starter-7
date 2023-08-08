@@ -14,13 +14,4 @@ class InvoiceItem < ApplicationRecord
     invoice_ids = InvoiceItem.where("status = 0 OR status = 1").pluck(:invoice_id)
     Invoice.order(created_at: :asc).find(invoice_ids)
   end
-
-  def discounted_price
-    applicable_discount = item.applicable_discount(quantity)
-    if applicable_discount
-      (quantity * unit_price * (1 - applicable_discount.percentage/100.00)).ceil(2)
-    else
-      unit_price * quantity
-    end
-  end
 end
